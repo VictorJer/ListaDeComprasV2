@@ -37,15 +37,15 @@ public abstract class TelaBase : ITela
 
         EntidadeBase novaEntidade = ObterDadosCadastrais();
 
-        string[] erros = novaEntidade.Validar();
+        List<string> erros = novaEntidade.Validar();
 
-        if (erros.Length > 0)
+        if (erros.Count > 0)
         {
             Console.WriteLine("---------------------------------");
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            for (int i = 0; i < erros.Length; i++)
+            for (int i = 0; i < erros.Count; i++)
             {
                 string erro = erros[i];
 
@@ -89,15 +89,15 @@ public abstract class TelaBase : ITela
 
         EntidadeBase novaEntidade = ObterDadosCadastrais();
 
-        string[] erros = novaEntidade.Validar();
+        List<string> erros = novaEntidade.Validar();
 
-        if (erros.Length > 0)
+        if (erros.Count > 0)
         {
             Console.WriteLine("---------------------------------");
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            for (int i = 0; i < erros.Length; i++)
+            for (int i = 0; i < erros.Count; i++)
             {
                 string erro = erros[i];
 

@@ -3,3 +3,13 @@ D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeCompras
 D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.AssemblyInfo.cs
 D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.csproj.CoreCompileInputs.cache
 D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.sourcelink.json
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\bin\Debug\net10.0\ListaDeComprasV2.ConsoleApp.exe
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\bin\Debug\net10.0\ListaDeComprasV2.ConsoleApp.deps.json
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\bin\Debug\net10.0\ListaDeComprasV2.ConsoleApp.runtimeconfig.json
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\bin\Debug\net10.0\ListaDeComprasV2.ConsoleApp.dll
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\bin\Debug\net10.0\ListaDeComprasV2.ConsoleApp.pdb
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.dll
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\refint\ListaDeComprasV2.ConsoleApp.dll
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.pdb
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.genruntimeconfig.cache
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ref\ListaDeComprasV2.ConsoleApp.dll
