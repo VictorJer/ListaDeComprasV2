@@ -3,7 +3,7 @@ using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
 
-public class TelaCategoria : TelaBase, ITela
+public class TelaCategoria : TelaBase
 {
     private RepositorioCategoria repositorioCategoria;
 

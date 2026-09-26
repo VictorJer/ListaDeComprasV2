@@ -20,7 +20,7 @@ while (true)
     {
         string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
 
-        if (telaSelecionada is TelaBase telaBase) // esse mano aqui ja muda a telaSelecionada para TelaBase
+        if (telaSelecionada is TelaBase telaBase) // <= esse mano aqui ja muda a telaSelecionada para TelaBase
         {
             if (opcaoSubMenu == "1")
                 telaBase.Cadastrar();
