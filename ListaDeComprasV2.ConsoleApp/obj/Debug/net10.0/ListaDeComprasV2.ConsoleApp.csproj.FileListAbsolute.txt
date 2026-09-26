@@ -1,0 +1,5 @@
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.AssemblyInfoInputs.cache
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.AssemblyInfo.cs
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.csproj.CoreCompileInputs.cache
+D:\ListaDeComprasV2\ListaDeComprasV2.ConsoleApp\obj\Debug\net10.0\ListaDeComprasV2.ConsoleApp.sourcelink.json

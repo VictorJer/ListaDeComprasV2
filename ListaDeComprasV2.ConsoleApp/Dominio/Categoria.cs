@@ -7,6 +7,13 @@ public class Categoria : EntidadeBase
 {
     public string Nome { get; set; } = string.Empty;
     public string Cor { get; set; } = string.Empty;
+
+    public Categoria(string nome, string cor)
+    {
+        Nome = nome;
+        Cor = cor;
+    }
+
     public override void AtualizarRegistro(EntidadeBase entidadeAtualizada)
     {
         Categoria categoriaAtualizada = (Categoria)entidadeAtualizada;
