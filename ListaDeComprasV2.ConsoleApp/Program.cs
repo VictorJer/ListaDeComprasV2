@@ -1,7 +1,10 @@
 ﻿using ListaDeComprasV2.ConsoleApp.Apresentacao;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Repositorio;
 
-TelaPrincipal telaPrincipal = new TelaPrincipal();
+RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
+
+TelaPrincipal telaPrincipal = new TelaPrincipal(repositorioCategoria);
 
 while (true)
 {
@@ -17,7 +20,7 @@ while (true)
     {
         string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
 
-        if (telaSelecionada is TelaBase telaBase)
+        if (telaSelecionada is TelaBase telaBase) // esse mano aqui ja muda a telaSelecionada para TelaBase
         {
             if (opcaoSubMenu == "1")
                 telaBase.Cadastrar();

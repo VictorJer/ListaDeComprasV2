@@ -11,7 +11,7 @@ public class TelaPrincipal
         this.repositorioCategoria = repositorioCategoria;
     }
 
-    public ITela? ObterOpcaoMenuTela()
+    public ITela? ApresentarMenuOpcoesPrincipal()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
