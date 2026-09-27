@@ -1,3 +1,4 @@
+using System.Collections;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 using ListaDeComprasV2.ConsoleApp.Dominio;
 using ListaDeComprasV2.ConsoleApp.Repositorio;
@@ -19,18 +20,26 @@ public class TelaCategoria : TelaBase
         if (deveExibirCabecalho)
             ExibirCabecalho("Visualização de categoria");
 
+
+        ArrayList categoria = repositorioCategoria.SelecionarTodos();
+
+        if (categoria.Count == 0)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Nem uma Categoria encontrada");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("ENTER para continuar...");
+
+            return;
+        }
+
         Console.WriteLine(
             "{0,-12} | {1, -7}"
             , "Nome", "Cor");
 
-        EntidadeBase?[] categoria = repositorioCategoria.SelecionarTodos();
 
-        for (int i = 0; i < categoria.Length; i++)
+        foreach (Categoria c in categoria)
         {
-            Categoria c = (Categoria?)categoria[i];
-
-            if (c == null)
-                continue;
 
             Console.WriteLine(
         "{0,-12} | {1, -7}"
