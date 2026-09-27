@@ -7,7 +7,7 @@ public class TelaPrincipal
 {
     private RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
 
-    public ITela? ApresentarMenuOpcoesPrincipal()
+    public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");

@@ -5,15 +5,14 @@ using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
 
-public class TelaCategoria : TelaBase
+public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
 {
-    private RepositorioCategoria repositorioCategoria;
 
-    public TelaCategoria(RepositorioCategoria repositorioCategoria)
-        : base(nomeEntidade: "Categoria", repositorio: repositorioCategoria)
+    public TelaCategoria(RepositorioCategoria repositorio) : base(nomeEntidade: "Categoria", repositorio: repositorio)
     {
-        this.repositorioCategoria = repositorioCategoria;
+
     }
+
 
     public override void VisualizarTodos(bool deveExibirCabecalho)
     {
@@ -21,7 +20,7 @@ public class TelaCategoria : TelaBase
             ExibirCabecalho("Visualização de categoria");
 
 
-        List<EntidadeBase> categoria = repositorioCategoria.SelecionarTodos();
+        List<Categoria> categoria = repositorio.SelecionarTodos();
 
         if (categoria.Count == 0)
         {
@@ -47,7 +46,7 @@ public class TelaCategoria : TelaBase
         }
     }
 
-    protected override EntidadeBase ObterDadosCadastrais()
+    protected override Categoria ObterDadosCadastrais()
     {
         Console.Write("Digite o nome da categoria: ");
         string nome = Console.ReadLine() ?? "";
