@@ -5,8 +5,8 @@ namespace ListaDeComprasV2.ConsoleApp.Dominio;
 
 public class Categoria : EntidadeBase
 {
-    public string Nome { get; set; } = string.Empty;
-    public string Cor { get; set; } = string.Empty;
+    public string Nome { get; private set; } = string.Empty;
+    public string Cor { get; private set; } = string.Empty;
 
     public Categoria(string nome, string cor)
     {
@@ -14,7 +14,7 @@ public class Categoria : EntidadeBase
         Cor = cor;
     }
 
-    public override void AtualizarRegistro(EntidadeBase entidadeAtualizada)
+    public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
         Categoria categoriaAtualizada = (Categoria)entidadeAtualizada;
 

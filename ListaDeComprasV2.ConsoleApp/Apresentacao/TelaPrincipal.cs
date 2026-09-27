@@ -5,11 +5,7 @@ namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
 
 public class TelaPrincipal
 {
-    private RepositorioCategoria repositorioCategoria;
-    public TelaPrincipal(RepositorioCategoria repositorioCategoria)
-    {
-        this.repositorioCategoria = repositorioCategoria;
-    }
+    private RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
 
     public ITela? ApresentarMenuOpcoesPrincipal()
     {

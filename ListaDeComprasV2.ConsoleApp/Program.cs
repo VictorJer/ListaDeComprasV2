@@ -1,10 +1,7 @@
 ﻿using ListaDeComprasV2.ConsoleApp.Apresentacao;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
-using ListaDeComprasV2.ConsoleApp.Repositorio;
 
-RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
-
-TelaPrincipal telaPrincipal = new TelaPrincipal(repositorioCategoria);
+TelaPrincipal telaPrincipal = new TelaPrincipal();
 
 while (true)
 {

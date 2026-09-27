@@ -1,4 +1,5 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Dominio;
 using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
@@ -15,11 +16,55 @@ public class TelaCategoria : TelaBase
 
     public override void VisualizarTodos(bool deveExibirCabecalho)
     {
-        throw new NotImplementedException();
+        if (deveExibirCabecalho)
+            ExibirCabecalho("Visualização de categoria");
+
+        Console.WriteLine(
+            "{0,-12} | {1, -7}"
+            , "Nome", "Cor");
+
+        EntidadeBase?[] categoria = repositorioCategoria.SelecionarTodos();
+
+        for (int i = 0; i < categoria.Length; i++)
+        {
+            Categoria c = (Categoria?)categoria[i];
+
+            if (c == null)
+                continue;
+
+            Console.WriteLine(
+        "{0,-12} | {1, -7}"
+        , c.Nome, c.Cor);
+        }
     }
 
     protected override EntidadeBase ObterDadosCadastrais()
     {
-        throw new NotImplementedException();
+        Console.Write("Digite o nome da categoria: ");
+        string nome = Console.ReadLine() ?? "";
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Selecione uma cor válida para a categoria");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("1 - Vermelho");
+        Console.WriteLine("2 - Azul");
+        Console.WriteLine("3 - Verde");
+        Console.WriteLine("4 - Branco (Padrão)");
+        Console.WriteLine("---------------------------------");
+        Console.Write("Digite a cor da categoria: ");
+        string cor = Console.ReadLine() ?? "";
+
+        string corPorExtenso = string.Empty;
+
+        if (cor == "1")
+            corPorExtenso = "Vermelho";
+        else if (cor == "2")
+            corPorExtenso = "Azul";
+        else if (cor == "3")
+            corPorExtenso = "Verde";
+        else
+            corPorExtenso = "Branco";
+
+        return new Categoria(nome, corPorExtenso);
     }
 }
