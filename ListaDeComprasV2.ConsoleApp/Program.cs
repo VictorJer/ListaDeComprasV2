@@ -1,5 +1,5 @@
-﻿using ListaDeComprasV2.ConsoleApp.Apresentacao;
-using ListaDeComprasV2.ConsoleApp.Compartilhado;
+﻿using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();
 

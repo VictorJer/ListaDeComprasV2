@@ -75,4 +75,22 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
 
         return new Categoria(nome, corPorExtenso);
     }
+
+    protected override List<string> ValidarRegistroDuplicado(Categoria novaEntidade)
+    {
+        List<string> erros = new List<string>();
+
+        List<Categoria> categorias = repositorio.SelecionarTodos();
+
+        foreach (Categoria c in categorias)
+        {
+            if (c.Nome == novaEntidade.Nome)
+            {
+                erros.Add("Ja existe uma categoria com esse nome");
+                break;
+            }
+        }
+
+        return erros;
+    }
 }

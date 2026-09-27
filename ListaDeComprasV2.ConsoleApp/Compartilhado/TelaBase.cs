@@ -1,3 +1,5 @@
+using ListaDeComprasV2.ConsoleApp.Utilidade;
+
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 
 public abstract class TelaBase<T> where T : EntidadeBase
@@ -31,6 +33,11 @@ public abstract class TelaBase<T> where T : EntidadeBase
         return opcaoMenu;
     }
 
+    protected virtual List<string> ValidarRegistroDuplicado(T novaEntidade)
+    {
+        return new List<string>();
+    }
+
     public void Cadastrar()
     {
         ExibirCabecalho($"Cadastro de {nomeEntidade}");
@@ -61,9 +68,19 @@ public abstract class TelaBase<T> where T : EntidadeBase
             return;
         }
 
+        List<string> errosValidacao = ValidarRegistroDuplicado(novaEntidade);
+
+        if (errosValidacao.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(errosValidacao);
+
+            Cadastrar();
+            return;
+        }
+
         repositorio.Cadastrar(novaEntidade);
 
-        ExibirMensagem($"O registro \"{novaEntidade.Id}\" foi cadastrado com sucesso!");
+        Notificador.ExibirMensagem($"O registro \"{novaEntidade.Id}\" foi cadastrado com sucesso!");
     }
 
     public void Editar()
@@ -117,11 +134,11 @@ public abstract class TelaBase<T> where T : EntidadeBase
 
         if (!conseguiuEditar)
         {
-            ExibirMensagem("Não foi possível encontrar o registro requisitado.");
+            Notificador.ExibirMensagem("Não foi possível encontrar o registro requisitado.");
             return;
         }
 
-        ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso.");
+        Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso.");
     }
 
     public void Excluir()
@@ -136,22 +153,37 @@ public abstract class TelaBase<T> where T : EntidadeBase
 
         do
         {
-            Console.Write("Digite o ID do registro que deseja excluir: ");
-            idSelecionado = Console.ReadLine();
+            Console.Write("Digite o ID do registro que deseja excluir (ou S para sair): ");
+            idSelecionado = Console.ReadLine() ?? string.Empty;
 
-            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+            if (idSelecionado.ToUpper() == "S")
+                return;
+
+            if (idSelecionado.Length == 7)
                 break;
         } while (true);
 
-        bool conseguiuExcluir = repositorio.Excluir(idSelecionado);
+        T? registroSelecionado = repositorio.SelecionarPorId(idSelecionado);
 
-        if (!conseguiuExcluir)
+        if (registroSelecionado == null)
         {
-            ExibirMensagem("Não foi possível encontrar o registro requisitado.");
+            Notificador.ExibirMensagem("Não foi possível encontrar o registro requisitado.");
+
+            Excluir();
             return;
         }
 
-        ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
+        List<string> errosDuplicacao = ValidarExclusaoRegistro(registroSelecionado);
+
+        if (errosDuplicacao.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(errosDuplicacao);
+            return;
+        }
+
+        repositorio.Excluir(registroSelecionado.Id);
+
+        Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
     }
 
     public abstract void VisualizarTodos(bool deveExibirCabecalho);
@@ -166,14 +198,9 @@ public abstract class TelaBase<T> where T : EntidadeBase
         Console.WriteLine("---------------------------------");
     }
 
-    protected void ExibirMensagem(string mensagem)
+    protected virtual List<string> ValidarExclusaoRegistro(T registro)
     {
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine(mensagem);
-        Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar...");
-        Console.ReadLine();
+        return new List<string>();
     }
-
     protected abstract T ObterDadosCadastrais();
 }

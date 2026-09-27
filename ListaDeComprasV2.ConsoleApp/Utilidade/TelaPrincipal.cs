@@ -1,7 +1,8 @@
+using ListaDeComprasV2.ConsoleApp.Apresentacao;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 using ListaDeComprasV2.ConsoleApp.Repositorio;
 
-namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
+namespace ListaDeComprasV2.ConsoleApp.Utilidade;
 
 public class TelaPrincipal
 {
