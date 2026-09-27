@@ -76,7 +76,7 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
         return new Categoria(nome, corPorExtenso);
     }
 
-    protected override List<string> ValidarRegistroDuplicado(Categoria novaEntidade)
+    protected override List<string> ValidarRegistroDuplicado(Categoria novaEntidade, string? idIgnorado = null)
     {
         List<string> erros = new List<string>();
 
@@ -84,7 +84,7 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
 
         foreach (Categoria c in categorias)
         {
-            if (c.Nome == novaEntidade.Nome)
+            if (c.Id != idIgnorado && c.Nome == novaEntidade.Nome)
             {
                 erros.Add("Ja existe uma categoria com esse nome");
                 break;
