@@ -21,7 +21,7 @@ public class TelaCategoria : TelaBase
             ExibirCabecalho("Visualização de categoria");
 
 
-        ArrayList categoria = repositorioCategoria.SelecionarTodos();
+        List<EntidadeBase> categoria = repositorioCategoria.SelecionarTodos();
 
         if (categoria.Count == 0)
         {

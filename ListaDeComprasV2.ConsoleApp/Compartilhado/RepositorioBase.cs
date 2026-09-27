@@ -5,7 +5,7 @@ public abstract class RepositorioBase
 {
     // protected EntidadeBase?[] registros = new EntidadeBase[100];
 
-    protected ArrayList registros = new ArrayList();
+    protected List<EntidadeBase> registros = new List<EntidadeBase>();
 
     public void Cadastrar(EntidadeBase entidade)
     {
@@ -48,7 +48,7 @@ public abstract class RepositorioBase
 
     }
 
-    public ArrayList SelecionarTodos()
+    public List<EntidadeBase> SelecionarTodos()
     {
         return registros;
     }
