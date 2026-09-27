@@ -5,7 +5,7 @@ TelaPrincipal telaPrincipal = new TelaPrincipal();
 
 while (true)
 {
-    ITela? telaSelecionada = telaPrincipal.ApresentarMenuOpcoesPrincipal();
+    ITelaOpcoes? telaSelecionada = telaPrincipal.ApresentarMenuOpcoesPrincipal();
 
     if (telaSelecionada == null)
     {
@@ -17,7 +17,7 @@ while (true)
     {
         string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
 
-        if (telaSelecionada is TelaBase telaBase)
+        if (telaSelecionada is ITelaCrud telaBase) // <= esse mano aqui ja muda a telaSelecionada para TelaBase
         {
             if (opcaoSubMenu == "1")
                 telaBase.Cadastrar();

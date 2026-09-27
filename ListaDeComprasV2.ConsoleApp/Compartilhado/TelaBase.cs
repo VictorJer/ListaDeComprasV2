@@ -1,11 +1,11 @@
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 
-public abstract class TelaBase : ITela
+public abstract class TelaBase<T> where T : EntidadeBase
 {
     public string nomeEntidade = string.Empty;
-    private RepositorioBase repositorio;
+    protected RepositorioBase<T> repositorio;
 
-    protected TelaBase(string nomeEntidade, RepositorioBase repositorio)
+    protected TelaBase(string nomeEntidade, RepositorioBase<T> repositorio)
     {
         this.nomeEntidade = nomeEntidade;
         this.repositorio = repositorio;
@@ -35,17 +35,17 @@ public abstract class TelaBase : ITela
     {
         ExibirCabecalho($"Cadastro de {nomeEntidade}");
 
-        EntidadeBase novaEntidade = ObterDadosCadastrais();
+        T novaEntidade = ObterDadosCadastrais();
 
-        string[] erros = novaEntidade.Validar();
+        List<string> erros = novaEntidade.Validar();
 
-        if (erros.Length > 0)
+        if (erros.Count > 0)
         {
             Console.WriteLine("---------------------------------");
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            for (int i = 0; i < erros.Length; i++)
+            for (int i = 0; i < erros.Count; i++)
             {
                 string erro = erros[i];
 
@@ -87,17 +87,17 @@ public abstract class TelaBase : ITela
 
         Console.WriteLine("---------------------------------");
 
-        EntidadeBase novaEntidade = ObterDadosCadastrais();
+        T novaEntidade = ObterDadosCadastrais();
 
-        string[] erros = novaEntidade.Validar();
+        List<string> erros = novaEntidade.Validar();
 
-        if (erros.Length > 0)
+        if (erros.Count > 0)
         {
             Console.WriteLine("---------------------------------");
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            for (int i = 0; i < erros.Length; i++)
+            for (int i = 0; i < erros.Count; i++)
             {
                 string erro = erros[i];
 
@@ -175,5 +175,5 @@ public abstract class TelaBase : ITela
         Console.ReadLine();
     }
 
-    protected abstract EntidadeBase ObterDadosCadastrais();
+    protected abstract T ObterDadosCadastrais();
 }
