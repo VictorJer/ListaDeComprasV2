@@ -8,10 +8,10 @@ public class ListaCompras : EntidadeBase
     public DateTime DataCriacao { get; private set; }
     public StatusListaCompras Status { get; private set; }
 
-    public ListaCompras(string nome, DateTime dataCriacao)
+    public ListaCompras(string nome)
     {
         Nome = nome;
-        DataCriacao = dataCriacao;
+        DataCriacao = DateTime.Now;
 
         Abrir();
     }
