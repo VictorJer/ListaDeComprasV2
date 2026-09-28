@@ -1,21 +1,22 @@
 ﻿using System.Text.Json;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Compartilhado.Arquivos;
 using ListaDeComprasV2.ConsoleApp.Dominio;
 using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 //===================================================================
+ContextoJson contexto = new ContextoJson();
 
-// string caminhoDowloads = "C:\\Users\\victo\\Downloads";
-// string caminhoArquivo = caminhoDowloads + "\\categoria.json";
+Categoria categoria = new Categoria("cafe", "Vermelha");
 
-// Categoria categoria = new Categoria("cafe", "Vermelho");
+// contexto.Categorias.Add(categoria);
+// contexto.Produtos.Add(new Produto("cafezes", "200g", 27, categoria));
+// contexto.Salvar();
 
-// string jsonString = JsonSerializer.Serialize(categoria);
+contexto.Carregar();
 
-// File.WriteAllText(caminhoArquivo, jsonString);
-
-// return;
+return;
 //===================================================================
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();

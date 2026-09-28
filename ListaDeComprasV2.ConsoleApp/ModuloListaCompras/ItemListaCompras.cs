@@ -15,6 +15,7 @@ public class ItemListaCompras
         }
     }
 
+    public ItemListaCompras() { }
     public ItemListaCompras(Produto produto, int quantidade)
     {
         Id = Convert

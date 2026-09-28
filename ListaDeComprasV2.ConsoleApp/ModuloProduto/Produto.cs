@@ -9,6 +9,7 @@ public class Produto : EntidadeBase
     public Categoria Categoria { get; set; }
 
 
+    public Produto() { }
     public Produto(string nome, string unidadeMedida, decimal precoAproximado, Categoria categoria)
     {
         Nome = nome;

@@ -7,7 +7,7 @@ namespace ListaDeComprasV2.ConsoleApp.Utilidade;
 
 public class TelaPrincipal
 {
-    private readonly RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
+    private readonly RepositorioCategoriaEmMemoria repositorioCategoria = new RepositorioCategoriaEmMemoria();
     private readonly RepositorioProdutoEmMemoria repositorioProduto = new RepositorioProdutoEmMemoria();
     private readonly RepositorioListaComprasEmMemoria repositorioListaCompras = new RepositorioListaComprasEmMemoria();
 

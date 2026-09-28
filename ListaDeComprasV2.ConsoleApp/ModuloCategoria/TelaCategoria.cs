@@ -8,7 +8,7 @@ namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
 public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
 {
 
-    public TelaCategoria(RepositorioCategoria repositorio) : base(nomeEntidade: "Categoria", repositorio: repositorio)
+    public TelaCategoria(RepositorioCategoriaEmMemoria repositorio) : base(nomeEntidade: "Categoria", repositorio: repositorio)
     {
 
     }
