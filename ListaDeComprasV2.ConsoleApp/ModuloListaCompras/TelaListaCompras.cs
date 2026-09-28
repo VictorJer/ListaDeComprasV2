@@ -124,7 +124,45 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
 
     internal void RemoverItem()
     {
-        throw new NotImplementedException();
+        ExibirCabecalho("Remoção de Item de Listas de Compras");
+
+        VisualizarTodos(false);
+
+        Console.WriteLine("---------------------------------");
+
+        Console.Write("Digite o ID da lista que deseja gerenciar (ou S para sair): ");
+        string idSelecionado = Console.ReadLine() ?? string.Empty;
+
+        if (idSelecionado.ToUpper() == "S")
+            return;
+
+        ListaCompras? listaSelecionada = repositorio.SelecionarPorId(idSelecionado);
+
+        if (listaSelecionada == null)
+        {
+            Notificador.ExibirMensagem("Não foi possível encontrar a lista de compras selecionada.");
+            return;
+        }
+
+        VisualizarItens(listaSelecionada);
+
+        Console.WriteLine("---------------------------------");
+
+        Console.Write("Digite o ID do item da lista que deseja remover (ou S para sair): ");
+        string idItemSelecionado = Console.ReadLine() ?? string.Empty;
+
+        if (idItemSelecionado.ToUpper() == "S")
+            return;
+
+        bool conseguiuRemover = listaSelecionada.RemoverItem(idItemSelecionado);
+
+        if (!conseguiuRemover)
+        {
+            Notificador.ExibirMensagem("Não é possível encontrar o item da lista.");
+            return;
+        }
+
+        Notificador.ExibirMensagem($"O item foi removido da lista com sucesso!");
     }
 
     internal void VisualizarItens(ListaCompras? listaSelecionada = null)
