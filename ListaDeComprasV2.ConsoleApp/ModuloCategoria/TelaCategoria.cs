@@ -20,9 +20,9 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
             ExibirCabecalho("Visualização de categoria");
 
 
-        List<Categoria> categoria = repositorio.SelecionarTodos();
+        List<Categoria> categorias = repositorio.SelecionarTodos();
 
-        if (categoria.Count == 0)
+        if (categorias.Count == 0)
         {
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Nem uma Categoria encontrada");
@@ -33,16 +33,17 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
         }
 
         Console.WriteLine(
-            "{0,-12} | {1, -7}"
-            , "Nome", "Cor");
+            "{0, -7} | {1, -20} | {2, -10}",
+            "Id", "Nome", "Cor"
+        );
 
-
-        foreach (Categoria c in categoria)
+        foreach (Categoria c in categorias)
         {
 
             Console.WriteLine(
-        "{0,-12} | {1, -7}"
-        , c.Nome, c.Cor);
+                "{0, -7} | {1, -20} | {2, -10}",
+                c.Id, c.Nome, c.Cor
+            );
         }
     }
 
