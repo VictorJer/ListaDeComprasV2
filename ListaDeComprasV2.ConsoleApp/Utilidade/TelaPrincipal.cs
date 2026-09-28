@@ -6,7 +6,8 @@ namespace ListaDeComprasV2.ConsoleApp.Utilidade;
 
 public class TelaPrincipal
 {
-    private RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
+    private readonly RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
+    private readonly RepositorioProduto repositorioProduto = new RepositorioProduto();
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
     {
@@ -25,6 +26,9 @@ public class TelaPrincipal
 
         if (opcaoMenuPrincipal == "1")
             return new TelaCategoria(repositorioCategoria);
+
+        if (opcaoMenuPrincipal == "")
+            return new TelaProduto(repositorioProduto, repositorioCategoria);
 
         return null;
     }
