@@ -4,10 +4,10 @@ namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 
 public class ListaCompras : EntidadeBase
 {
-    public string Nome { get; private set; }
-    public DateTime DataCriacao { get; private set; }
-    public StatusListaCompras Status { get; private set; }
-    public List<ItemListaCompras> Itens { get; private set; } = new List<ItemListaCompras>();
+    public string Nome { get; set; }
+    public DateTime DataCriacao { get; set; }
+    public StatusListaCompras Status { get; set; }
+    public List<ItemListaCompras> Itens { get; set; } = new List<ItemListaCompras>();
     public decimal TotalGasto
     {
         get

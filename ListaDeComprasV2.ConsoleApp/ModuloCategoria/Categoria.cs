@@ -3,8 +3,8 @@ namespace ListaDeComprasV2.ConsoleApp.Dominio;
 
 public class Categoria : EntidadeBase
 {
-    public string Nome { get; private set; } = string.Empty;
-    public string Cor { get; private set; } = string.Empty;
+    public string Nome { get; set; } = string.Empty;
+    public string Cor { get; set; } = string.Empty;
 
     public Categoria() { }
     public Categoria(string nome, string cor)

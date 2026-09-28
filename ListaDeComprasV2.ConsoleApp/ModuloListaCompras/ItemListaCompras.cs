@@ -4,9 +4,9 @@ namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 
 public class ItemListaCompras
 {
-    public string Id { get; private set; }
-    public Produto Produto { get; private set; }
-    public int Quantidade { get; private set; }
+    public string Id { get; set; }
+    public Produto Produto { get; set; }
+    public int Quantidade { get; set; }
     public decimal Preco
     {
         get
