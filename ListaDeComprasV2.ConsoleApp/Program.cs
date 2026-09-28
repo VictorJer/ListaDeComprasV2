@@ -11,7 +11,10 @@ string caminhoArquivo = caminhoDowloads + "\\categoria.json";
 
 Categoria categoria = new Categoria("cafe", "Vermelho");
 
-string jsonString = JsonSerializer.Serialize(categoria);
+JsonSerializerOptions optionsJson = new JsonSerializerOptions(); // opçoes do json
+optionsJson.WriteIndented = true; // ambienta o arquivo json
+
+string jsonString = JsonSerializer.Serialize(categoria, optionsJson); // podemos passar "optionsJson" no casa ele vai ambientar o arquivo json
 
 File.WriteAllText(caminhoArquivo, jsonString);
 
