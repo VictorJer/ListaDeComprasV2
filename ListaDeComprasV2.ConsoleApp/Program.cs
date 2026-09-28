@@ -1,4 +1,5 @@
 ﻿using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();
@@ -30,6 +31,18 @@ while (true)
 
             else if (opcaoSubMenu == "4")
                 telaBase.VisualizarTodos(deveExibirCabecalho: true);
+
+            if (telaBase is TelaListaCompras telaListaCompras)
+            {
+                if (opcaoSubMenu == "5")
+                    telaListaCompras.AdicionarItem();
+
+                else if (opcaoSubMenu == "6")
+                    telaListaCompras.RemoverItem();
+
+                else if (opcaoSubMenu == "7")
+                    telaListaCompras.VisualizarItens();
+            }
         }
     }
 }
