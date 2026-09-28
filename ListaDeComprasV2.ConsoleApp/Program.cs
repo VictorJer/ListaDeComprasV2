@@ -6,17 +6,15 @@ using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 //===================================================================
-ContextoJson contexto = new ContextoJson();
+// ContextoJson contexto = new ContextoJson();
 
-Categoria categoria = new Categoria("cafe", "Vermelha");
+// // contexto.Categorias.Add(categoria);
+// // contexto.Produtos.Add(new Produto("cafezes", "200g", 27, categoria));
+// // contexto.Salvar();
 
-// contexto.Categorias.Add(categoria);
-// contexto.Produtos.Add(new Produto("cafezes", "200g", 27, categoria));
-// contexto.Salvar();
+// contexto.Carregar();
 
-contexto.Carregar();
-
-return;
+// return;
 //===================================================================
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();
