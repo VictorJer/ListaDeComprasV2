@@ -62,11 +62,22 @@ public class ListaCompras : EntidadeBase
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        ListaCompras listaAtualizada = (ListaCompras)entidadeAtualizada;
+
+        Nome = listaAtualizada.Nome;
     }
 
     public override List<string> Validar()
     {
-        throw new NotImplementedException();
+        List<string> erros = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(Nome))
+            erros.Add("O campo \"Nome\" deve ser preenchido!");
+        else if (Nome.Length < 2)
+            erros.Add("O campo \"Nome\" deve conter no minimo 2 caracteres");
+        else if (Nome.Length > 50)
+            erros.Add("O campo \"Nome\" deve conter no maximo 50 caracteres");
+
+        return erros;
     }
 }

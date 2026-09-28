@@ -67,6 +67,43 @@ public sealed class ListaComprasTest
         Assert.HasCount(1, lista.Itens);
     }
 
+    [TestMethod]
+    public void ListaComNomeValidoDeveRetornarSemErros()
+    {
+        ListaCompras lista = new ListaCompras("Compras da semana");
+
+        var erros = lista.Validar();
+
+        Assert.HasCount(0, erros);
+    }
+
+    [TestMethod]
+    public void ListaSemNomeDeveRetornarErro()
+    {
+        ListaCompras lista = new ListaCompras(" ");
+
+        var erros = lista.Validar();
+
+        CollectionAssert.Contains(erros, "O campo \"Nome\" deve ser preenchido!");
+    }
+
+    [TestMethod]
+    public void AtualizarDadosDeveAlterarNomeEPreservarDadosDaLista()
+    {
+        ListaCompras lista = new ListaCompras("Compras da semana");
+        lista.AdicionarItem(CriarProduto(7.50m), 2);
+        string idOriginal = lista.Id;
+        DateTime dataCriacaoOriginal = lista.DataCriacao;
+        ListaCompras dadosAtualizados = new ListaCompras("Compras do mes");
+
+        lista.AtualizarDados(dadosAtualizados);
+
+        Assert.AreEqual("Compras do mes", lista.Nome);
+        Assert.AreEqual(idOriginal, lista.Id);
+        Assert.AreEqual(dataCriacaoOriginal, lista.DataCriacao);
+        Assert.HasCount(1, lista.Itens);
+    }
+
     private static Produto CriarProduto(decimal preco)
     {
         return new Produto("Arroz", "Kg", preco, new Categoria("Alimentos", "1"));
