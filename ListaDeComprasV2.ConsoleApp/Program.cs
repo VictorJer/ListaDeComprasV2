@@ -6,16 +6,16 @@ using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 //===================================================================
 
-string caminhoDowloads = "C:\\Users\\victo\\Downloads";
-string caminhoArquivo = caminhoDowloads + "\\categoria.json";
+// string caminhoDowloads = "C:\\Users\\victo\\Downloads";
+// string caminhoArquivo = caminhoDowloads + "\\categoria.json";
 
-Categoria categoria = new Categoria("cafe", "Vermelho");
+// Categoria categoria = new Categoria("cafe", "Vermelho");
 
-string jsonString = JsonSerializer.Serialize(categoria);
+// string jsonString = JsonSerializer.Serialize(categoria);
 
-File.WriteAllText(caminhoArquivo, jsonString);
+// File.WriteAllText(caminhoArquivo, jsonString);
 
-return;
+// return;
 //===================================================================
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();

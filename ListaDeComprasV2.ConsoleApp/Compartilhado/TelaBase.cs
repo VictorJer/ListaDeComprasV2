@@ -1,3 +1,4 @@
+using ListaDeComprasV2.ConsoleApp.Compartilhado.Memoria;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
@@ -5,9 +6,9 @@ namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 public abstract class TelaBase<T> where T : EntidadeBase
 {
     public string nomeEntidade = string.Empty;
-    protected RepositorioBase<T> repositorio;
+    protected RepositorioBaseEmMemoria<T> repositorio;
 
-    protected TelaBase(string nomeEntidade, RepositorioBase<T> repositorio)
+    protected TelaBase(string nomeEntidade, RepositorioBaseEmMemoria<T> repositorio)
     {
         this.nomeEntidade = nomeEntidade;
         this.repositorio = repositorio;

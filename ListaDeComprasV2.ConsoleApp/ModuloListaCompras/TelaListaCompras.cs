@@ -1,12 +1,13 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Compartilhado.Memoria;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 
 public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
 {
-    private readonly RepositorioProduto repositorioProduto;
-    public TelaListaCompras(RepositorioBase<ListaCompras> repositorioListaCompras, RepositorioProduto repositorioProduto) : base("ListaCompras", repositorioListaCompras)
+    private readonly RepositorioProdutoEmMemoria repositorioProduto;
+    public TelaListaCompras(RepositorioBaseEmMemoria<ListaCompras> repositorioListaCompras, RepositorioProdutoEmMemoria repositorioProduto) : base("ListaCompras", repositorioListaCompras)
     {
         this.repositorioProduto = repositorioProduto;
     }

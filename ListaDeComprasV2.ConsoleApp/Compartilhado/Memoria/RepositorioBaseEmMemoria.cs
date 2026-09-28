@@ -1,7 +1,7 @@
 using System.Collections;
-namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
+namespace ListaDeComprasV2.ConsoleApp.Compartilhado.Memoria;
 
-public abstract class RepositorioBase<T> where T : EntidadeBase // Where T : EntidadeBase obriga o T ser uma entidade base
+public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase // Where T : EntidadeBase obriga o T ser uma entidade base
 {
     protected List<T> registros = new List<T>();
 
