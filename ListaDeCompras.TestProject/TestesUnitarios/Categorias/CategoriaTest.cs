@@ -14,4 +14,34 @@ public sealed class CategoriaTest
 
         Assert.HasCount(0, erros);
     }
+
+    [TestMethod]
+    public void CategoriaComNomeVazioDeveRetornarErro()
+    {
+        Categoria categoria = new Categoria("", "1");
+
+        var erros = categoria.Validar();
+
+        CollectionAssert.Contains(erros, "O campo \"Nome\" deve ser preenchido!");
+    }
+
+    [TestMethod]
+    public void CategoriaComNomeCurtoDeveRetornarErro()
+    {
+        Categoria categoria = new Categoria("A", "1");
+
+        var erros = categoria.Validar();
+
+        CollectionAssert.Contains(erros, "O campo \"Nome\" deve conter no minimo 2 caracteres");
+    }
+
+    [TestMethod]
+    public void CategoriaComCorInvalidaDeveRetornarErro()
+    {
+        Categoria categoria = new Categoria("Bebidas", "4");
+
+        var erros = categoria.Validar();
+
+        CollectionAssert.Contains(erros, "O campo \"Cor\" deve conter uma opção valida");
+    }
 }
