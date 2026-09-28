@@ -10,11 +10,15 @@ string caminhoDowloads = "C:\\Users\\victo\\Downloads";
 string caminhoArquivo = caminhoDowloads + "\\categoria.json";
 
 Categoria categoria = new Categoria("cafe", "Vermelho");
+Categoria categoria1 = new Categoria("coca", "Vermelho");
+
+List<Categoria> categorias = [categoria, categoria1];
 
 JsonSerializerOptions optionsJson = new JsonSerializerOptions(); // opçoes do json
 optionsJson.WriteIndented = true; // ambienta o arquivo json
+optionsJson.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; // configura para toda entidade comessar com letra minuscula 
 
-string jsonString = JsonSerializer.Serialize(categoria, optionsJson); // podemos passar "optionsJson" no casa ele vai ambientar o arquivo json
+string jsonString = JsonSerializer.Serialize(categorias, optionsJson); // podemos passar "optionsJson" para configurar como vai estar o arquivo json
 
 File.WriteAllText(caminhoArquivo, jsonString);
 
