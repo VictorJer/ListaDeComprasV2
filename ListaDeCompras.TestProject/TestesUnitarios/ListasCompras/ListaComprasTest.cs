@@ -106,6 +106,6 @@ public sealed class ListaComprasTest
 
     private static Produto CriarProduto(decimal preco)
     {
-        return new Produto("Arroz", "Kg", preco, new Categoria("Alimentos", "1"));
+        return new Produto("Arroz", "Kg", preco, new Categoria("Alimentos", "Vermelho"));
     }
 }

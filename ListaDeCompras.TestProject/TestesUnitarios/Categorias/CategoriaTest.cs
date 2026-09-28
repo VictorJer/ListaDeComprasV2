@@ -8,7 +8,7 @@ public sealed class CategoriaTest
     [TestMethod]
     public void NovaCategoriaDeveRetornarSemErros()
     {
-        Categoria categoria = new Categoria("Vitu", "1");
+        Categoria categoria = new Categoria("Vitu", "Vermelho");
 
         var erros = categoria.Validar();
 
@@ -18,7 +18,7 @@ public sealed class CategoriaTest
     [TestMethod]
     public void CategoriaComNomeVazioDeveRetornarErro()
     {
-        Categoria categoria = new Categoria("", "1");
+        Categoria categoria = new Categoria("", "Vermelho");
 
         var erros = categoria.Validar();
 
@@ -28,7 +28,7 @@ public sealed class CategoriaTest
     [TestMethod]
     public void CategoriaComNomeCurtoDeveRetornarErro()
     {
-        Categoria categoria = new Categoria("A", "1");
+        Categoria categoria = new Categoria("A", "Vermelho");
 
         var erros = categoria.Validar();
 
@@ -38,10 +38,20 @@ public sealed class CategoriaTest
     [TestMethod]
     public void CategoriaComCorInvalidaDeveRetornarErro()
     {
-        Categoria categoria = new Categoria("Bebidas", "4");
+        Categoria categoria = new Categoria("Bebidas", "1");
 
         var erros = categoria.Validar();
 
         CollectionAssert.Contains(erros, "O campo \"Cor\" deve conter uma opção valida");
+    }
+
+    [TestMethod]
+    public void CategoriaComNomeDeCorValidoDeveRetornarSemErros()
+    {
+        Categoria categoria = new Categoria("Bebidas", "Branco");
+
+        var erros = categoria.Validar();
+
+        Assert.HasCount(0, erros);
     }
 }

@@ -47,7 +47,7 @@ public sealed class ProdutoTest
 
     private static Categoria CriarCategoria()
     {
-        return new Categoria("Alimentos", "1");
+        return new Categoria("Alimentos", "Vermelho");
     }
 
     private static Produto CriarProduto()

@@ -1,6 +1,4 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
-using Microsoft.VisualBasic;
-
 namespace ListaDeComprasV2.ConsoleApp.Dominio;
 
 public class Categoria : EntidadeBase
@@ -35,7 +33,9 @@ public class Categoria : EntidadeBase
         else if (Nome.Length > 50)
             erros.Add("O campo \"Nome\" deve conter no maximo 50 caracteres");
 
-        if (Cor != "1" && Cor != "2" && Cor != "3")
+        string[] coresValidas = { "Vermelho", "Azul", "Verde", "Branco" };
+
+        if (!coresValidas.Contains(Cor, StringComparer.OrdinalIgnoreCase))
             erros.Add("O campo \"Cor\" deve conter uma opção valida");
 
         return erros;
