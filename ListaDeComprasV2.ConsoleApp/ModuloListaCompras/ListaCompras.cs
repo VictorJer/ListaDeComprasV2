@@ -51,8 +51,10 @@ public class ListaCompras : EntidadeBase
         foreach (ItemListaCompras item in Itens)
         {
             if (item.Id == IdItem)
+            {
                 Itens.Remove(item);
-            return true;
+                return true;
+            }
         }
 
         return false;
