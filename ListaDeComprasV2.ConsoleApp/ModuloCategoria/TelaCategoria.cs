@@ -1,6 +1,7 @@
 using System.Collections;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 using ListaDeComprasV2.ConsoleApp.Dominio;
+using ListaDeComprasV2.ConsoleApp.ModuloCategoria;
 using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
@@ -8,7 +9,7 @@ namespace ListaDeComprasV2.ConsoleApp.Apresentacao;
 public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
 {
 
-    public TelaCategoria(RepositorioCategoriaEmMemoria repositorio) : base(nomeEntidade: "Categoria", repositorio: repositorio)
+    public TelaCategoria(RepositorioCategoriaEmArquivo repositorio) : base(nomeEntidade: "Categoria", repositorio: repositorio)
     {
 
     }
@@ -45,6 +46,9 @@ public class TelaCategoria : TelaBase<Categoria>, ITelaOpcoes, ITelaCrud
                 c.Id, c.Nome, c.Cor
             );
         }
+        if (deveExibirCabecalho)
+            ExibirCabecalho("ENTER para continuar...");
+        Console.ReadLine();
     }
 
     protected override Categoria ObterDadosCadastrais()

@@ -2,7 +2,10 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 using ListaDeComprasV2.ConsoleApp.Compartilhado.Arquivos;
 using ListaDeComprasV2.ConsoleApp.Dominio;
+using ListaDeComprasV2.ConsoleApp.ModuloCategoria;
 using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
+using ListaDeComprasV2.ConsoleApp.ModuloProduto;
+using ListaDeComprasV2.ConsoleApp.Repositorio;
 using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 //===================================================================
@@ -17,7 +20,17 @@ using ListaDeComprasV2.ConsoleApp.Utilidade;
 // return;
 //===================================================================
 
-TelaPrincipal telaPrincipal = new TelaPrincipal();
+ContextoJson contexto = new ContextoJson();
+contexto.Carregar();
+
+
+RepositorioListaComprasEmArquivo repositorioListaComprasEmArquivo = new RepositorioListaComprasEmArquivo(contexto);
+RepositorioProdutoEmArquivo repositorioProdutoEmArquivo = new RepositorioProdutoEmArquivo(contexto);
+RepositorioCategoriaEmArquivo repositorioCategoriaEmArquivo = new RepositorioCategoriaEmArquivo(contexto);
+
+
+
+TelaPrincipal telaPrincipal = new TelaPrincipal(repositorioCategoriaEmArquivo, repositorioProdutoEmArquivo, repositorioListaComprasEmArquivo);
 
 
 

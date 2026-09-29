@@ -28,7 +28,7 @@ public class ContextoJson
 
     public void Carregar()
     {
-        string caminhoDiretorio = "C:\\Users\\victor\\Downloads";
+        string caminhoDiretorio = "C:\\Users\\victo\\Downloads";
 
         string caminhoArquivo = caminhoDiretorio + "\\dados.json";
 

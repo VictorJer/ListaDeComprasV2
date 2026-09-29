@@ -1,15 +1,24 @@
 using ListaDeComprasV2.ConsoleApp.Apresentacao;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.ModuloCategoria;
 using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
+using ListaDeComprasV2.ConsoleApp.ModuloProduto;
 using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 namespace ListaDeComprasV2.ConsoleApp.Utilidade;
 
 public class TelaPrincipal
 {
-    private readonly RepositorioCategoriaEmMemoria repositorioCategoria = new RepositorioCategoriaEmMemoria();
-    private readonly RepositorioProdutoEmMemoria repositorioProduto = new RepositorioProdutoEmMemoria();
-    private readonly RepositorioListaComprasEmMemoria repositorioListaCompras = new RepositorioListaComprasEmMemoria();
+    private readonly RepositorioCategoriaEmArquivo repositorioCategoria;
+    private readonly RepositorioProdutoEmArquivo repositorioProduto;
+    private readonly RepositorioListaComprasEmArquivo repositorioListaCompras;
+
+    public TelaPrincipal(RepositorioCategoriaEmArquivo repositorioCategoria, RepositorioProdutoEmArquivo repositorioProduto, RepositorioListaComprasEmArquivo repositorioListaCompras)
+    {
+        this.repositorioCategoria = repositorioCategoria;
+        this.repositorioProduto = repositorioProduto;
+        this.repositorioListaCompras = repositorioListaCompras;
+    }
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
     {
