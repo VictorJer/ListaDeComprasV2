@@ -22,7 +22,7 @@ public class TelaPrincipal
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
     {
-        Console.Clear();
+        // Console.Clear();
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Lista de Compras");
         Console.WriteLine("---------------------------------");
@@ -33,6 +33,9 @@ public class TelaPrincipal
         Console.WriteLine("---------------------------------");
         Console.Write("> ");
         string? opcaoMenuPrincipal = Console.ReadLine()?.ToUpper();
+
+        if (opcaoMenuPrincipal == "S")
+            return null;
 
         if (opcaoMenuPrincipal == "1")
             return new TelaCategoria(repositorioCategoria);
