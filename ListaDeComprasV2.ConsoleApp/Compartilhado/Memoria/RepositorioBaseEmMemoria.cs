@@ -22,14 +22,19 @@ public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase // Wher
         return true;
     }
 
+    public bool Excluir(T registro)
+    {
+        return registros.Remove(registro);
+    }
+
     public bool Excluir(string idSelecionado)
     {
-        T? entidadeSelecionada = SelecionarPorId(idSelecionado);
+        T? registroSelecionado = SelecionarPorId(idSelecionado);
 
-        if (entidadeSelecionada == null)
+        if (registroSelecionado == null)
             return false;
 
-        registros.Remove(entidadeSelecionada);
+        registros.Remove(registroSelecionado);
 
         return true;
     }

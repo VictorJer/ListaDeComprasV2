@@ -33,17 +33,19 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
         return true;
     }
 
+    public bool Excluir(T registro)
+    {
+        return registros.Remove(registro);
+    }
+
     public bool Excluir(string idSelecionado)
     {
-        T? entidadeSelecionada = SelecionarPorId(idSelecionado);
+        T? registroSelecionado = SelecionarPorId(idSelecionado);
 
-        if (entidadeSelecionada == null)
+        if (registroSelecionado == null)
             return false;
 
-        bool result = registros.Remove(entidadeSelecionada);
-
-        if (result)
-            contexto.Salvar();
+        registros.Remove(registroSelecionado);
 
         return true;
     }
