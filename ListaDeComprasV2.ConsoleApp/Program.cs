@@ -24,9 +24,9 @@ ContextoJson contexto = new ContextoJson();
 contexto.Carregar();
 
 
-RepositorioListaComprasEmArquivo repositorioListaComprasEmArquivo = new RepositorioListaComprasEmArquivo(contexto);
-RepositorioProdutoEmArquivo repositorioProdutoEmArquivo = new RepositorioProdutoEmArquivo(contexto);
-RepositorioCategoriaEmArquivo repositorioCategoriaEmArquivo = new RepositorioCategoriaEmArquivo(contexto);
+IRepositorio<ListaCompras> repositorioListaComprasEmArquivo = new RepositorioListaComprasEmArquivo(contexto);
+IRepositorio<Produto> repositorioProdutoEmArquivo = new RepositorioProdutoEmArquivo(contexto);
+IRepositorio<Categoria> repositorioCategoriaEmArquivo = new RepositorioCategoriaEmArquivo(contexto);
 
 
 
