@@ -21,7 +21,16 @@ using ListaDeComprasV2.ConsoleApp.Utilidade;
 //===================================================================
 
 ContextoJson contexto = new ContextoJson();
-contexto.Carregar();
+try
+{
+    contexto.Carregar();
+}
+catch (JsonException)
+{
+    Notificador.ExibirMensagem("O arquivo de armazenamento esta corrompido");
+    return;
+}
+
 
 
 IRepositorio<ListaCompras> repositorioListaComprasEmArquivo = new RepositorioListaComprasEmArquivo(contexto);
