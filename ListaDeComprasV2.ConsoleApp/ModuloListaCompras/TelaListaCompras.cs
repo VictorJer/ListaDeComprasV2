@@ -8,8 +8,8 @@ namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 
 public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
 {
-    private readonly RepositorioProdutoEmArquivo repositorioProduto;
-    public TelaListaCompras(RepositorioBaseEmArquivo<ListaCompras> repositorioListaCompras, RepositorioProdutoEmArquivo repositorioProduto) : base("ListaCompras", repositorioListaCompras)
+    private readonly IRepositorio<Produto> repositorioProduto;
+    public TelaListaCompras(IRepositorio<ListaCompras> repositorioListaCompras, IRepositorio<Produto> repositorioProduto) : base("ListaCompras", repositorioListaCompras)
     {
         this.repositorioProduto = repositorioProduto;
     }

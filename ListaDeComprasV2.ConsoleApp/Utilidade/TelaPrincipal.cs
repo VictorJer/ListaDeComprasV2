@@ -1,5 +1,6 @@
 using ListaDeComprasV2.ConsoleApp.Apresentacao;
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
+using ListaDeComprasV2.ConsoleApp.Dominio;
 using ListaDeComprasV2.ConsoleApp.ModuloCategoria;
 using ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 using ListaDeComprasV2.ConsoleApp.ModuloProduto;
@@ -9,11 +10,11 @@ namespace ListaDeComprasV2.ConsoleApp.Utilidade;
 
 public class TelaPrincipal
 {
-    private readonly RepositorioCategoriaEmArquivo repositorioCategoria;
-    private readonly RepositorioProdutoEmArquivo repositorioProduto;
-    private readonly RepositorioListaComprasEmArquivo repositorioListaCompras;
+    private readonly IRepositorio<Categoria> repositorioCategoria;
+    private readonly IRepositorio<Produto> repositorioProduto;
+    private readonly IRepositorio<ListaCompras> repositorioListaCompras;
 
-    public TelaPrincipal(RepositorioCategoriaEmArquivo repositorioCategoria, RepositorioProdutoEmArquivo repositorioProduto, RepositorioListaComprasEmArquivo repositorioListaCompras)
+    public TelaPrincipal(IRepositorio<Categoria> repositorioCategoria, IRepositorio<Produto> repositorioProduto, IRepositorio<ListaCompras> repositorioListaCompras)
     {
         this.repositorioCategoria = repositorioCategoria;
         this.repositorioProduto = repositorioProduto;

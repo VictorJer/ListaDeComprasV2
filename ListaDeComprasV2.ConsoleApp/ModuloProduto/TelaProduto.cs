@@ -6,8 +6,8 @@ using ListaDeComprasV2.ConsoleApp.Repositorio;
 
 public class TelaProduto : TelaBase<Produto>, ITelaOpcoes, ITelaCrud
 {
-    private readonly RepositorioCategoriaEmArquivo repositorioCategoria;
-    public TelaProduto(RepositorioProdutoEmArquivo repositorioProduto, RepositorioCategoriaEmArquivo repositorioCategoria) : base("Produto", repositorioProduto)
+    private readonly IRepositorio<Categoria> repositorioCategoria;
+    public TelaProduto(IRepositorio<Produto> repositorioProduto, IRepositorio<Categoria> repositorioCategoria) : base("Produto", repositorioProduto)
     {
         this.repositorioCategoria = repositorioCategoria;
     }

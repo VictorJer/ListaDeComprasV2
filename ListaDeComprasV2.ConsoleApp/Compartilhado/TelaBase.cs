@@ -7,9 +7,9 @@ namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 public abstract class TelaBase<T> where T : EntidadeBase
 {
     public string nomeEntidade = string.Empty;
-    protected RepositorioBaseEmArquivo<T> repositorio;
+    protected IRepositorio<T> repositorio;
 
-    protected TelaBase(string nomeEntidade, RepositorioBaseEmArquivo<T> repositorio)
+    protected TelaBase(string nomeEntidade, IRepositorio<T> repositorio)
     {
         this.nomeEntidade = nomeEntidade;
         this.repositorio = repositorio;
@@ -195,7 +195,7 @@ public abstract class TelaBase<T> where T : EntidadeBase
             return;
         }
 
-        repositorio.Excluir(registroSelecionado.Id);
+        repositorio.Excluir(registroSelecionado);
 
         Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
     }
