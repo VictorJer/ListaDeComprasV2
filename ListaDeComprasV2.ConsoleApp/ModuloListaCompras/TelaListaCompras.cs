@@ -9,7 +9,7 @@ namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
 {
     private readonly IRepositorio<Produto> repositorioProduto;
-    public TelaListaCompras(IRepositorio<ListaCompras> repositorioListaCompras, IRepositorio<Produto> repositorioProduto) : base("ListaCompras", repositorioListaCompras)
+    public TelaListaCompras(IRepositorio<ListaCompras> repositorioListaCompras, IRepositorio<Produto> repositorioProduto) : base("Lista de Compras", repositorioListaCompras)
     {
         this.repositorioProduto = repositorioProduto;
     }
@@ -117,10 +117,18 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
             return;
         }
 
-        Console.Write("Digite a quantidade do produto que deseja adicionar: ");
-        int quantidadeItens = Convert.ToInt32(Console.ReadLine());
+        int quantidadeItens;
+        while (true)
+        {
+            Console.Write("Digite a quantidade do produto que deseja adicionar: ");
+            if (int.TryParse(Console.ReadLine(), out quantidadeItens) && quantidadeItens > 0)
+                break;
+
+            Console.WriteLine("Digite uma quantidade inteira maior que zero.");
+        }
 
         listaSelecionada.AdicionarItem(produtoSelecionado, quantidadeItens);
+        repositorio.Editar(listaSelecionada.Id, listaSelecionada);
 
         Notificador.ExibirMensagem($"O item \"{produtoSelecionado.Nome}\" foi adicionado à lista com sucesso!");
     }
@@ -165,6 +173,7 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaCrud, ITelaOpcoes
             return;
         }
 
+        repositorio.Editar(listaSelecionada.Id, listaSelecionada);
         Notificador.ExibirMensagem($"O item foi removido da lista com sucesso!");
     }
 

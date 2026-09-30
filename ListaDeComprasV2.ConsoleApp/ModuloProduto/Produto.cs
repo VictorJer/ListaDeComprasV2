@@ -1,12 +1,12 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 using ListaDeComprasV2.ConsoleApp.Dominio;
 
-public class Produto : EntidadeBase
+public class Produto : EntidadeBase<Produto>
 {
     public string Nome { get; set; } = string.Empty;
     public string UnidadeMedida { get; set; } = string.Empty;
     public decimal PrecoAproximado { get; set; }
-    public Categoria Categoria { get; set; }
+    public Categoria Categoria { get; set; } = null!;
 
 
     public Produto() { }
@@ -21,28 +21,29 @@ public class Produto : EntidadeBase
 
 
 
-    public override void AtualizarDados(EntidadeBase entidadeAtualizada)
+    public override void AtualizarDados(Produto entidadeAtualizada)
     {
-        Produto produtoAtualizado = (Produto)entidadeAtualizada;
-
-        Nome = produtoAtualizado.Nome;
-        UnidadeMedida = produtoAtualizado.UnidadeMedida;
-        PrecoAproximado = produtoAtualizado.PrecoAproximado;
-        Categoria = produtoAtualizado.Categoria;
+        Nome = entidadeAtualizada.Nome;
+        UnidadeMedida = entidadeAtualizada.UnidadeMedida;
+        PrecoAproximado = entidadeAtualizada.PrecoAproximado;
+        Categoria = entidadeAtualizada.Categoria;
     }
 
     public override List<string> Validar()
     {
         List<string> erros = new List<string>();
 
-        if (Nome.Length < 2 || Nome.Length > 100)
+        if (string.IsNullOrWhiteSpace(Nome) || Nome.Length < 2 || Nome.Length > 100)
             erros.Add("O campo \"Nome\" deve conter entre 2 e 100 caracteres.");
 
         if (string.IsNullOrWhiteSpace(UnidadeMedida))
             erros.Add("O campo \"Unidade de Medida\" deve ser preenchido.");
 
-        if (PrecoAproximado == 0)
-            erros.Add("O campo \"Preço Aproximado\" deve ser preenchido.");
+        if (PrecoAproximado <= 0)
+            erros.Add("O campo \"Preço Aproximado\" deve ser maior que zero.");
+
+        if (Categoria == null)
+            erros.Add("Uma categoria deve ser selecionada.");
 
         return erros;
     }

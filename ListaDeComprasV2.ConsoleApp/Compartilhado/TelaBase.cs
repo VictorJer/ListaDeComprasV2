@@ -4,7 +4,7 @@ using ListaDeComprasV2.ConsoleApp.Utilidade;
 
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 
-public abstract class TelaBase<T> where T : EntidadeBase
+public abstract class TelaBase<T> where T : EntidadeBase<T>
 {
     public string nomeEntidade = string.Empty;
     protected IRepositorio<T> repositorio;
@@ -42,47 +42,43 @@ public abstract class TelaBase<T> where T : EntidadeBase
 
     public void Cadastrar()
     {
-        ExibirCabecalho($"Cadastro de {nomeEntidade}");
-
-        T novaEntidade = ObterDadosCadastrais();
-
-        List<string> erros = novaEntidade.Validar();
-
-        if (erros.Count > 0)
+        while (true)
         {
-            Console.WriteLine("---------------------------------");
+            ExibirCabecalho($"Cadastro de {nomeEntidade}");
 
-            Console.ForegroundColor = ConsoleColor.Red;
+            T? novaEntidade = ObterDadosCadastrais();
+            if (novaEntidade is null)
+                return;
 
-            for (int i = 0; i < erros.Count; i++)
+            List<string> erros = novaEntidade.Validar();
+
+            if (erros.Count > 0)
             {
-                string erro = erros[i];
+                Console.WriteLine("---------------------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine(erro);
+                foreach (string erro in erros)
+                    Console.WriteLine(erro);
+
+                Console.ResetColor();
+                Console.WriteLine("---------------------------------");
+                Console.Write("Digite ENTER para continuar...");
+                Console.ReadLine();
+                continue;
             }
 
-            Console.ResetColor();
-            Console.WriteLine("---------------------------------");
-            Console.Write("Digite ENTER para continuar...");
-            Console.ReadLine();
+            List<string> errosValidacao = ValidarRegistroDuplicado(novaEntidade);
 
-            Cadastrar();
+            if (errosValidacao.Count > 0)
+            {
+                Notificador.ExibirMensagensErro(errosValidacao);
+                continue;
+            }
+
+            repositorio.Cadastrar(novaEntidade);
+            Notificador.ExibirMensagem($"O registro \"{novaEntidade.Id}\" foi cadastrado com sucesso!");
             return;
         }
-
-        List<string> errosValidacao = ValidarRegistroDuplicado(novaEntidade);
-
-        if (errosValidacao.Count > 0)
-        {
-            Notificador.ExibirMensagensErro(errosValidacao);
-
-            Cadastrar();
-            return;
-        }
-
-        repositorio.Cadastrar(novaEntidade);
-
-        Notificador.ExibirMensagem($"O registro \"{novaEntidade.Id}\" foi cadastrado com sucesso!");
     }
 
     public void Editar()
@@ -106,58 +102,53 @@ public abstract class TelaBase<T> where T : EntidadeBase
 
         Console.WriteLine("---------------------------------");
 
-        T novaEntidade = ObterDadosCadastrais();
-
-        List<string> erros = novaEntidade.Validar();
-
-        if (erros.Count > 0)
+        while (true)
         {
-            Console.WriteLine("---------------------------------");
+            T? novaEntidade = ObterDadosCadastrais();
+            if (novaEntidade is null)
+                return;
 
-            Console.ForegroundColor = ConsoleColor.Red;
+            List<string> erros = novaEntidade.Validar();
 
-            for (int i = 0; i < erros.Count; i++)
+            if (erros.Count > 0)
             {
-                string erro = erros[i];
+                Console.WriteLine("---------------------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine(erro);
+                foreach (string erro in erros)
+                    Console.WriteLine(erro);
+
+                Console.ResetColor();
+                Console.WriteLine("---------------------------------");
+                Console.Write("Digite ENTER para continuar...");
+                Console.ReadLine();
+                continue;
             }
 
-            Console.ResetColor();
-            Console.WriteLine("---------------------------------");
-            Console.Write("Digite ENTER para continuar...");
-            Console.ReadLine();
+            List<string> errosValidacao = ValidarRegistroDuplicado(novaEntidade, idSelecionado);
 
-            Editar();
+            if (errosValidacao.Count > 0)
+            {
+                Notificador.ExibirMensagensErro(errosValidacao);
+                continue;
+            }
+
+            bool conseguiuEditar = repositorio.Editar(idSelecionado, novaEntidade);
+
+            if (!conseguiuEditar)
+            {
+                Notificador.ExibirMensagem("Não foi possível encontrar o registro requisitado.");
+                return;
+            }
+
+            Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso.");
             return;
         }
-
-
-        List<string> errosValidacao = ValidarRegistroDuplicado(novaEntidade, idSelecionado);
-
-        if (errosValidacao.Count > 0)
-        {
-            Notificador.ExibirMensagensErro(errosValidacao);
-
-            Cadastrar();
-            return;
-        }
-
-
-        bool conseguiuEditar = repositorio.Editar(idSelecionado, novaEntidade);
-
-        if (!conseguiuEditar)
-        {
-            Notificador.ExibirMensagem("Não foi possível encontrar o registro requisitado.");
-            return;
-        }
-
-        Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso.");
     }
 
     public void Excluir()
     {
-        ExibirCabecalho("Exclusão de Caixa");
+        ExibirCabecalho($"Exclusão de {nomeEntidade}");
 
         VisualizarTodos(deveExibirCabecalho: false);
 
@@ -182,8 +173,6 @@ public abstract class TelaBase<T> where T : EntidadeBase
         if (registroSelecionado == null)
         {
             Notificador.ExibirMensagem("Não foi possível encontrar o registro requisitado.");
-
-            Excluir();
             return;
         }
 
@@ -216,5 +205,5 @@ public abstract class TelaBase<T> where T : EntidadeBase
     {
         return new List<string>();
     }
-    protected abstract T ObterDadosCadastrais();
+    protected abstract T? ObterDadosCadastrais();
 }

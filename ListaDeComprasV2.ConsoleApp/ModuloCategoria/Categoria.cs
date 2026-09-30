@@ -1,7 +1,7 @@
 using ListaDeComprasV2.ConsoleApp.Compartilhado;
 namespace ListaDeComprasV2.ConsoleApp.Dominio;
 
-public class Categoria : EntidadeBase
+public class Categoria : EntidadeBase<Categoria>
 {
     public string Nome { get; set; } = string.Empty;
     public string Cor { get; set; } = string.Empty;
@@ -13,12 +13,11 @@ public class Categoria : EntidadeBase
         Cor = cor;
     }
 
-    public override void AtualizarDados(EntidadeBase entidadeAtualizada)
+    public override void AtualizarDados(Categoria entidadeAtualizada)
     {
-        Categoria categoriaAtualizada = (Categoria)entidadeAtualizada;
 
-        Nome = categoriaAtualizada.Nome;
-        Cor = categoriaAtualizada.Cor;
+        Nome = entidadeAtualizada.Nome;
+        Cor = entidadeAtualizada.Cor;
     }
 
     public override List<string> Validar()

@@ -23,30 +23,32 @@ public class TelaPrincipal
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
     {
-        // Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Lista de Compras");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("1 - Gerenciar categorias");
-        Console.WriteLine("2 - Gerenciar produtos");
-        Console.WriteLine("3 - Gerenciar listas de compras");
-        Console.WriteLine("S - Sair");
-        Console.WriteLine("---------------------------------");
-        Console.Write("> ");
-        string? opcaoMenuPrincipal = Console.ReadLine()?.ToUpper();
+        while (true)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Lista de Compras");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("1 - Gerenciar categorias");
+            Console.WriteLine("2 - Gerenciar produtos");
+            Console.WriteLine("3 - Gerenciar listas de compras");
+            Console.WriteLine("S - Sair");
+            Console.WriteLine("---------------------------------");
+            Console.Write("> ");
+            string? opcaoMenuPrincipal = Console.ReadLine()?.Trim().ToUpperInvariant();
 
-        if (opcaoMenuPrincipal == "S")
-            return null;
+            if (opcaoMenuPrincipal == "S")
+                return null;
 
-        if (opcaoMenuPrincipal == "1")
-            return new TelaCategoria(repositorioCategoria);
+            if (opcaoMenuPrincipal == "1")
+                return new TelaCategoria(repositorioCategoria);
 
-        if (opcaoMenuPrincipal == "2")
-            return new TelaProduto(repositorioProduto, repositorioCategoria);
+            if (opcaoMenuPrincipal == "2")
+                return new TelaProduto(repositorioProduto, repositorioCategoria);
 
-        if (opcaoMenuPrincipal == "3")
-            return new TelaListaCompras(repositorioListaCompras, repositorioProduto);
+            if (opcaoMenuPrincipal == "3")
+                return new TelaListaCompras(repositorioListaCompras, repositorioProduto);
 
-        return null;
+            Console.WriteLine("Opção inválida.");
+        }
     }
 }

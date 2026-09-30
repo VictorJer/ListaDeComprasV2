@@ -43,6 +43,17 @@ public sealed class ListaComprasTest
     }
 
     [TestMethod]
+    [DataRow(0)]
+    [DataRow(-1)]
+    public void AdicionarItemComQuantidadeInvalidaDeveLancarExcecao(int quantidade)
+    {
+        ListaCompras lista = new ListaCompras("Compras da semana");
+
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(
+            () => lista.AdicionarItem(CriarProduto(7.50m), quantidade));
+    }
+
+    [TestMethod]
     public void RemoverItemExistenteDeveRetornarVerdadeiroERemoverItem()
     {
         ListaCompras lista = new ListaCompras("Compras da semana");

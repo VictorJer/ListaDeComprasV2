@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado;
 
-public abstract class EntidadeBase
+public abstract class EntidadeBase<T> where T : EntidadeBase<T>
 {
     public string Id { get; private set; } = string.Empty;
 
@@ -15,5 +15,5 @@ public abstract class EntidadeBase
     }
 
     public abstract List<string> Validar();
-    public abstract void AtualizarDados(EntidadeBase entidadeAtualizada);
+    public abstract void AtualizarDados(T entidadeAtualizada);
 }

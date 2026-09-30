@@ -42,7 +42,17 @@ public sealed class ProdutoTest
 
         var erros = produto.Validar();
 
-        CollectionAssert.Contains(erros, "O campo \"Preço Aproximado\" deve ser preenchido.");
+        CollectionAssert.Contains(erros, "O campo \"Preço Aproximado\" deve ser maior que zero.");
+    }
+
+    [TestMethod]
+    public void ProdutoComPrecoNegativoDeveRetornarErro()
+    {
+        Produto produto = new Produto("Arroz", "Kg", -1m, CriarCategoria());
+
+        var erros = produto.Validar();
+
+        CollectionAssert.Contains(erros, "O campo \"Preço Aproximado\" deve ser maior que zero.");
     }
 
     private static Categoria CriarCategoria()

@@ -2,9 +2,9 @@ using ListaDeComprasV2.ConsoleApp.Compartilhado;
 
 namespace ListaDeComprasV2.ConsoleApp.ModuloListaCompras;
 
-public class ListaCompras : EntidadeBase
+public class ListaCompras : EntidadeBase<ListaCompras>
 {
-    public string Nome { get; set; }
+    public string Nome { get; set; } = string.Empty;
     public DateTime DataCriacao { get; set; }
     public StatusListaCompras Status { get; set; }
     public List<ItemListaCompras> Itens { get; set; } = new List<ItemListaCompras>();
@@ -42,6 +42,11 @@ public class ListaCompras : EntidadeBase
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
+        ArgumentNullException.ThrowIfNull(produto);
+
+        if (quantidade <= 0)
+            throw new ArgumentOutOfRangeException(nameof(quantidade), "A quantidade deve ser maior que zero.");
+
         ItemListaCompras itemADD = new ItemListaCompras(produto, quantidade);
 
         Itens.Add(itemADD);
@@ -49,23 +54,13 @@ public class ListaCompras : EntidadeBase
 
     public bool RemoverItem(string IdItem)
     {
-        foreach (ItemListaCompras item in Itens)
-        {
-            if (item.Id == IdItem)
-            {
-                Itens.Remove(item);
-                return true;
-            }
-        }
-
-        return false;
+        ItemListaCompras? item = Itens.FirstOrDefault(item => item.Id == IdItem);
+        return item != null && Itens.Remove(item);
     }
 
-    public override void AtualizarDados(EntidadeBase entidadeAtualizada)
+    public override void AtualizarDados(ListaCompras entidadeAtualizada)
     {
-        ListaCompras listaAtualizada = (ListaCompras)entidadeAtualizada;
-
-        Nome = listaAtualizada.Nome;
+        Nome = entidadeAtualizada.Nome;
     }
 
     public override List<string> Validar()

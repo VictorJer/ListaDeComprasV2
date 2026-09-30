@@ -55,7 +55,10 @@ while (true)
 
     while (true)
     {
-        string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
+        string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu()?.Trim().ToUpperInvariant();
+
+        if (opcaoSubMenu == "S")
+            break;
 
         if (telaSelecionada is ITelaCrud telaBase) // <= esse mano aqui ja muda a telaSelecionada para TelaBase
         {

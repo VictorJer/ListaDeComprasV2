@@ -1,6 +1,6 @@
 namespace ListaDeComprasV2.ConsoleApp.Compartilhado.Arquivos;
 
-public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
+public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
 {
     protected ContextoJson contexto;
     protected List<T> registros;
@@ -35,7 +35,12 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
 
     public bool Excluir(T registro)
     {
-        return registros.Remove(registro);
+        bool removido = registros.Remove(registro);
+
+        if (removido)
+            contexto.Salvar();
+
+        return removido;
     }
 
     public bool Excluir(string idSelecionado)
@@ -46,6 +51,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
             return false;
 
         registros.Remove(registroSelecionado);
+        contexto.Salvar();
 
         return true;
     }
